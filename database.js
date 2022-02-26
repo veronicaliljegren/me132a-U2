@@ -1,9 +1,10 @@
+//Array of different Pasta-dishes
 "use strict"
 
-let database = [
+let pastaDatabase = [
     {
         id: 1,
-        name: "Pasta alla norma", 
+        dish: "Pasta alla norma", 
         typeOfPasta: "Rigatoni", 
         time: 30,
         difficulty: "Easy", 
@@ -11,7 +12,7 @@ let database = [
 
     {
         id: 2,
-        name: "Pasta al linome", 
+        dish: "Pasta al linome", 
         typeOfPasta: "Tagliatelle", 
         time: 30, 
         difficulty: "Easy", 
@@ -20,7 +21,7 @@ let database = [
 
     {
         id: 3,
-        name: "Carbonara", 
+        dish: "Carbonara", 
         typeOfPasta: "Spaghetti", 
         time: 30, 
         difficulty: "Easy", 
@@ -29,7 +30,7 @@ let database = [
 
     {
         id: 4,
-        name: "Bolognese", 
+        dish: "Bolognese", 
         typeOfPasta:"Mezze Maniche", 
         time: 60, 
         difficulty: "Medium", 
@@ -38,7 +39,7 @@ let database = [
 
     {
         id: 5,
-        name: "Pasta puttanesca", 
+        dish: "Pasta puttanesca", 
         typeOfPasta:"Spaghetti", 
         time: 45, 
         difficulty: "Medium", 
@@ -47,7 +48,7 @@ let database = [
 
     {
         id: 6,
-        name: "Pasta vongole", 
+        dish: "Pasta vongole", 
         typeOfPasta:"Linguine", 
         time: 60, 
         difficulty: "Hard", 
@@ -56,7 +57,7 @@ let database = [
 
     {
         id: 7,
-        name: "Penne zafferano", 
+        dish: "Penne zafferano", 
         typeOfPasta: "Penne", 
         time: 25, 
         difficulty: "Easy", 
@@ -65,7 +66,7 @@ let database = [
 
     {
         id: 8,
-        name: "Cacio e pepe", 
+        dish: "Cacio e pepe", 
         typeOfPasta: "Bucatini", 
         time: 10, 
         difficulty:"Easy", 
@@ -74,7 +75,7 @@ let database = [
 
     {
         id: 9,
-        name: "Pasta al tono", 
+        dish: "Pasta al tono", 
         typeOfPasta:"pappardelle", 
         time: 20, 
         difficulty:"Easy", 
@@ -83,13 +84,16 @@ let database = [
 
     {
         id: 10,
-        name: "Ragù alla genovese", 
+        dish: "Ragù alla genovese", 
         typeOfPasta: "Penne lisce", 
         time: 540, 
         difficulty:"Hard", 
 
     }
 ]
+{}
+
+
  
 
 

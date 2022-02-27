@@ -67,8 +67,15 @@ h1{
 
 #pasta{
     display: flex;
+    justify-content: center;
+    margin: 15px;
+}
+
+#filterPasta{
+    display: flex;
     justify-content: center; 
 }
+
 
 
 

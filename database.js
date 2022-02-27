@@ -76,7 +76,7 @@ let pastaDatabase = [
     {
         id: 9,
         dish: "Pasta al tono", 
-        typeOfPasta:"pappardelle", 
+        typeOfPasta:"Pappardelle", 
         time: 20, 
         difficulty:"Easy", 
 

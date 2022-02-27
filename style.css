@@ -76,6 +76,15 @@ h1{
     justify-content: center; 
 }
 
+.newDiv{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+.newDiv div {
+    display: flex;
+    align-items: center;
+}
+
 
 
 

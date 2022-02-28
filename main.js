@@ -31,7 +31,6 @@ function addNewDishToDatabase (pastaDatabase, pasta){
 
 //skapa div 
 function createDiv(pasta) {
-   
   
     let div = document.createElement("div");
     div.classList.add("newDiv");
@@ -43,7 +42,7 @@ function createDiv(pasta) {
     <div>${pasta.typeOfPasta}</div>
     <div>${pasta.time}</div>
     <div>${pasta.difficulty}</div>
-    // <button type="button">Remove</button>
+     <button type="button">Remove</button>
     `;("")
 
     return div;
@@ -53,11 +52,11 @@ function createDiv(pasta) {
 function visiblePasta(){
     for ( let pasta of pastaDatabase ){
         let pastaElement = createDiv(pasta);
-        let newDiv = document.getElementById("newDiv");
-        newDiv.appendChild(pastaElement);
+        let pastaChart = document.getElementById("pastaChart");
+        pastaChart.appendChild(pastaElement);
     }
 }
-
 visiblePasta();
+
 
 

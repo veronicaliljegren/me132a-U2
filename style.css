@@ -6,7 +6,6 @@ body{
     margin: 30px;
 }
 
-
 #header{
     display: flex;
     justify-content: center;
@@ -18,8 +17,8 @@ body{
     background-image: url(./bolognese.jpg);
     background-size: cover;
     background-position: center;
-    width: 30vw;
-    height: 30vh;
+    width: 400px;
+    height: 250px;
     background-repeat: no-repeat;
 
 }
@@ -28,8 +27,8 @@ body{
     background-image: url(./Musslor.jpg);
     background-size: cover;
     background-position: center;
-    width: 30vw;
-    height: 30vh;
+    width: 400px;
+    height: 250px;
     background-repeat: no-repeat;
 }
 
@@ -37,8 +36,8 @@ body{
     background-image: url(./ravioli.jpg);
     background-size: cover;
     background-position: center;
-    width: 30vw;
-    height: 30vh;
+    width: 400px;
+    height: 250px;
     background-repeat: no-repeat;
 }
 
@@ -46,8 +45,6 @@ body{
     margin-top: 200px;
     display: flex;
     justify-content: center;
-    /* color: #5CFF0A; */
-    /* color: #a2d2ff; */
     color: #4361ee;
     font-family: 'Dancing Script', cursive;
     font-size: 50px;
@@ -58,8 +55,6 @@ h1{
     justify-content: center;
     font-size: 80px;
     font-family: "Jost";
-    /* color: #5CFF0A; */
-    /* color: #a2d2ff; */
     color: #4361ee;
     padding-top: 0%;
     margin-top: 0%;
@@ -78,12 +73,13 @@ h1{
 
 .newDiv{
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        background-color: bisque;
+        grid-template-columns: repeat(5, 1fr);
+        /* background-color: #e6ccb2; */
         gap: 25px;
         width: 800px;
         align-items: center;   
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: 'Domine';
+        padding: 10px;
     }
 
 .newDiv div {
@@ -94,22 +90,23 @@ h1{
 }
 
 #headers{
-        width: 800px;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 15px;
-        gap: 30px;
-        
-
+    width: 800px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    gap: 30px;
+    background-color: #4361ee;
+    margin-top: 20px;
+    color: white;
     }
-#headers > div{
+
+#headers > div {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 10px;
-    padding-bottom: 10px;
-    
+    padding-bottom: 10px;   
 }
     
 button{
@@ -119,17 +116,23 @@ button{
 }
 
 #pastaChart{
-    width:1200px;
+    width:1000px;
     display: grid;
     align-items: center;
     justify-content: center;
+    background-color: #e6ccb2;
+
 }
  
-
 #containter{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
  
+
+/* #pasta{
+
+} */

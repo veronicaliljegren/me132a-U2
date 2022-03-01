@@ -19,17 +19,25 @@ function addNewDishToDatabase (pastaDatabase, pasta){
     pastaDatabase.push(pasta);
 }
 
-//Ta bort en pastarätt från databasen
-function removePastaByID(pastaDatabase, pasta){
-    for( let pasta of pastaDishes)
-    let pasta = pasta[i];
+// //Ta bort en pastarätt från databasen
+// function removePastaByID(pastaDatabase, id){
+//     for( let pasta of pastaDatabase)
+//     let pasta = pastaDatabase[i];
 
-    if(pasta.id == id){
-        pasta.splice(i , 1);
-        return;
-    }
-}
+//     if(pasta.id == id){
+//         pasta.splice(i , 1);
+//         return;
+//     }
+// }
 
+// function removePastaByID(pastas, id){
+//     for ( let i = 0; i < pastas.length; i++)
+//         let pasta = pastas[i];
+//         if( pastas.id == id){
+//             pastas.splice(i, 1);
+//             return;
+//         }
+// }
 
 //Returns all pastadishes 
 function pastaDishes(pastaDatabase, dish){
@@ -39,7 +47,6 @@ function pastaDishes(pastaDatabase, dish){
         if (pasta.dish.toLowerCase()== dish.toLowerCase()){
             pastaDatabase.push(pasta);
         }
-       
     }
     return pastaDish;
 }
@@ -52,7 +59,6 @@ function pastaTime(pastaDatabase, time){
         if (pasta.time.toLowerCase()== time.toLowerCase()){
             pastaDatabase.push(pasta);
         }
-       
     }
     return pastaTime;
 }
@@ -65,7 +71,6 @@ function pastaDifficulty(pastaDatabase, difficulty){
         if (pasta.difficulty.toLowerCase()== difficulty.toLowerCase()){
             pastaDatabase.push(pasta);
         }
-       
     }
     return pastaDifficulty;
 }
@@ -73,20 +78,19 @@ function pastaDifficulty(pastaDatabase, difficulty){
 //skapa div 
 function createDiv(pasta) {
   
-    let div = document.createElement("div");
-    div.classList.add("newDiv");
-    div.id = pasta.id;
+    let li = document.createElement("li");
+    li.classList.add("newDiv");
+    li.id = pasta.id;
 
-    div.innerHTML = `   
-    <div>${pasta.id}</div>
-    <div>${pasta.dish}</div>
-    <div>${pasta.typeOfPasta}</div>
-    <div>${pasta.time}</div>
-    <div>${pasta.difficulty}</div>
-     <button type="button">Remove</button>
-    `;("")
+    li.innerHTML = `   
+        <li>${pasta.dish}</li>
+        <div>${pasta.typeOfPasta}</div>
+        <div>${pasta.time}</div>
+        <div>${pasta.difficulty}</div>
+        <button type="button">Remove</button>
+        `;
 
-    return div;
+    return li;
 }
 
 //här går varje pasta igenom min databas
@@ -96,8 +100,10 @@ function visiblePasta(){
         let pastaChart = document.getElementById("pastaChart");
         pastaChart.appendChild(pastaElement);
     }
-    setRemovePastaHandlers();
+    // setRemovePastaHandlers();
 }
+
+
 
 //Filter recepies by dish
 function onFilterByDish(event){
@@ -130,19 +136,26 @@ function onFilterByDifficulty(event){
     let pastas = pastaTime(pastaDatabase, difficulty);
     //Visa rätterna som filtrerats beroende på svårighetsgrad
     visiblePasta(pastas);
+}
+
+//När <form id="pasta" is submitted
+function onAddDishSubmit(event){
+    //Förhindrar att användaren kommer till en ny sida
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let time = document.getElementById("time").value;
+    let difficulty = document.getElementById("difficulty").value;
+
+    let pasta = createNewDish ( name, time, difficulty);
 
 }
 
-
-
-
-
-
-
-
-
-
-
+//Lägg till "click" event handler to <botton id ="add">
+function setAddDishHandler(){
+    let click = document.getElementById("pasta");
+    click.addEventListener("submit", onAddDishSubmit)
+}
 
 
 visiblePasta();

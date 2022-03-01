@@ -13,6 +13,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> 
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Indie+Flower&family=Jost:wght@500&family=Libre+Baskerville:wght@700&family=Lobster&family=Manrope:wght@200&family=Montserrat:wght@300&family=Playfair+Display:wght@700&family=Teko:wght@700&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
     <title>Pasta for Dinner</title>
 </head>
 <body>
@@ -28,8 +35,8 @@
 <!-- Formulär -->
     <form id = "pasta">
         <input id= "name" type= "text" placeholder= "Dish">
-        <input id= "name" type= "number" placeholder= "Time in minutes">
-        <input id= "name" type= "text" placeholder= "Difficulty">
+        <input id= "time" type= "number" placeholder= "Time in minutes">
+        <input id= "difficulty" type= "text" placeholder= "Difficulty">
         <button>Add your favourite dish to the collection</button>
     </form>
 
@@ -54,13 +61,12 @@
     
 <div id="containter">
     <div id="headers">
-        <div>Recepie ID</div>
         <div>Pasta dish</div> 
         <div>Type of Pasta</div>
         <div>Time</div>
         <div>Difficulty</div>
     </div>
-    <div id="pastaChart"></div>
+    <ol id="pastaChart" type="1"></ol>
 </div>
 
 

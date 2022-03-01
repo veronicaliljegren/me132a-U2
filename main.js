@@ -19,16 +19,16 @@ function addNewDishToDatabase (pastaDatabase, pasta){
     pastaDatabase.push(pasta);
 }
 
-// //Ta bort en pastarätt från databasen
-// function removePastaByID(pastaDatabase, id){
-//     for( let pasta of pastaDatabase)
-//     let pasta = pastaDatabase[i];
+//Ta bort en pastarätt från databasen
+function removePastaByID(pastaDatabase, id){
+    for( let pasta of pastaDatabase)
+    let pasta = pastaDatabase[i];
 
-//     if(pasta.id == id){
-//         pasta.splice(i , 1);
-//         return;
-//     }
-// }
+    if(pasta.id == id){
+        pasta.splice(i , 1);
+        return;
+    }
+}
 
 // function removePastaByID(pastas, id){
 //     for ( let i = 0; i < pastas.length; i++)
@@ -144,11 +144,19 @@ function onAddDishSubmit(event){
     event.preventDefault();
 
     let name = document.getElementById("name").value;
-    let time = document.getElementById("time").value;
+    let time = Number(document.getElementById("time").value);
     let difficulty = document.getElementById("difficulty").value;
 
     let pasta = createNewDish ( name, time, difficulty);
 
+    //
+    pasta.id = pastaDatabase[pastaDatabase.length-1].id + 1;
+
+    addNewDishToDatabase(pastaDatabase, pasta)
+    visiblePasta(pastaDatabase);
+
+    let form = document.getElementById("pasta");
+    form.reset();
 }
 
 //Lägg till "click" event handler to <botton id ="add">
@@ -156,6 +164,16 @@ function setAddDishHandler(){
     let click = document.getElementById("pasta");
     click.addEventListener("submit", onAddDishSubmit)
 }
+
+//Ta bort via remove-knappen
+function onRemovePastaClick(event) {
+    let button = event.target;
+    let id = button.parentElement.id;
+
+    removePastaByID(pastaDatabase, id);
+    visiblePasta(pastaDatabase);
+}
+
 
 
 visiblePasta();

@@ -24,21 +24,11 @@ function addNewDishToDatabase(pastaDatabase, pasta){
     }
 }
 
-// //Ta bort en pastarätt från databasen
-// function removePastaByID(pastaDatabase, id){
-//     for( let pasta of pastaDatabase)
-//     let pasta = pastaDatabase[i];
-
-//     if(pasta.id == id){
-//         pasta.splice(i , 1);
-//         return;
-//     }
-// }
-
-function removePastaByID(pastas, id){
-    for ( let i = 0; i < pastas.length; i++) {
+// Ta bort en pastarätt från databasen
+function removePastaByID(pastas, id) {
+    for (let i = 0; i < pastas.length; i++) {
         let pasta = pastas[i];
-        if( pasta.id == id){
+        if( pasta.id == id) {
             pastas.splice(i, 1);
             return;
         }
@@ -46,35 +36,23 @@ function removePastaByID(pastas, id){
 }    
 
 
-//Returns all pastadishes 
-function pastaDishes(pastaDatabase, dish){
+//Returns all pastadishes based on name 
+function pastaDishes(pastas, dish){
     let pastaDish = [];
 
-    for (let pasta of pastaDatabase){
+    for (let pasta of pastas){
         if (pasta.dish.toLowerCase()== dish.toLowerCase()){
-            pastaDatabase.push(pasta);
+            pastaDishes.push(pasta);
         }
     }
     return pastaDish;
 }
 
-// //Returns pasta by time
-// function pastaTime(pastaDatabase, time){
-//     let pastaTime = [];
-
-//     for (let pasta of pastaDatabase){
-//         if (pasta.time.toLowerCase()== time.toLowerCase()){
-//             pastaDatabase.push(pasta);
-//         }
-//     }
-//     return pastaTime;
-// }
-
 //Returns pasta by difficulty 
-function pastaDifficulty(pastaDatabase, difficulty){
+function pastaDifficulty(pastas, difficulty){
     let pastaDifficulty = [];
 
-    for (let pasta of pastaDatabase){
+    for (let pasta of pastas){
         if (pasta.difficulty.toLowerCase()== difficulty.toLowerCase()){
             pastaDatabase.push(pasta);
         }

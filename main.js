@@ -63,7 +63,7 @@ function pastaDifficulty(pastas, difficulty){
 //skapa div 
 function createDiv(pasta) {
   
-    let li = document.createElement("li");
+    let li = document.createElement("div");
     li.classList.add("newDiv");
     li.id = pasta.id;
 
@@ -78,13 +78,14 @@ function createDiv(pasta) {
     return li;
 }
 
-//här går varje pasta igenom min databas
+// går igenom alla pastadishes i databasen // lägger till i HTML
 function visiblePasta(){
     for ( let pasta of pastaDatabase ){
         let pastaElement = createDiv(pasta);
         let pastaChart = document.getElementById("pastaChart");
         pastaChart.appendChild(pastaElement);
     }
+    //lägger till remove-handlers för rätterna
     setRemovePastaHandler();
 }
 
@@ -98,14 +99,27 @@ function onAddDishSubmit(event){
     let time = Number(document.getElementById("time").value);
     let difficulty = document.getElementById("difficulty").value;
 
+    if(name == ""){
+        return alert(`Fill the form to add a new dish`);
+    }
+
+    else if (time == 0){
+        alert(`Fill the form to add a new dish`);
+    }
+
+    else if(difficulty == ""){
+        alert(`Fill the form to add a new dish`);
+    }
+
     let pasta = createNewDish ( name, time, difficulty);
 
-    //
-    pasta.id = pastaDatabase[pastaDatabase.length-1].id + 1;
+    // räkna ut den nya rättens id
+    pasta.id = pastaDatabase[pastaDatabase.length - 1].id + 1;
 
     addNewDishToDatabase(pastaDatabase, pasta)
     visiblePasta(pastaDatabase);
 
+    // töm all information från fälten i formuläret
     let form = document.getElementById("pasta");
     form.reset();
 }

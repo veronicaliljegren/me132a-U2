@@ -124,7 +124,7 @@ function onAddDishSubmit(event){
     form.reset();
 }
 
-//Lägg till "click" event handler to <botton id ="add">
+//Lägg till "click" event handler till <botton id ="add">
 function setAddDishHandler(){
     let click = document.getElementById("pasta");
     click.addEventListener("submit", onAddDishSubmit)
@@ -135,7 +135,13 @@ function onRemovePastaClick(event) {
     let button = event.target;
     let id = button.parentElement.id;
 
-    removePastaByID(pastaDatabase, id);
+    if ( confirm(`Are you sure you want to remove the dish from the collection?`) == true){
+        removePastaByID(pastaDatabase, id);
+    }
+    else {
+        return false;
+    }
+
     visiblePasta(pastaDatabase);
 }
 

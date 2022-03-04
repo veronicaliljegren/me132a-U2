@@ -74,7 +74,6 @@ h1{
 .newDiv{
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        /* background-color: #e6ccb2; */
         gap: 25px;
         width: 800px;
         align-items: center;   
@@ -132,7 +131,3 @@ button{
     padding: 10px;
 }
  
-
-/* #pasta{
-
-} */

@@ -12,7 +12,7 @@ let pastaDatabase = [
 
     {
         id: 2,
-        dish: "Pasta al linome", 
+        dish: "Pasta al limone", 
         typeOfPasta: "Tagliatelle", 
         time: 30, 
         difficulty: "Easy", 

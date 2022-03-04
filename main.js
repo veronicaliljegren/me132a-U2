@@ -1,9 +1,8 @@
 "use strict";
 
 //Skapar en ny pastarätt
-function createNewDish (id, dish, typeOfPasta, time, difficulty){
+function createNewDish (dish, typeOfPasta, time, difficulty){
     let pasta = {
-        id: id, 
         dish: dish, 
         typeOfPasta: typeOfPasta,
         time: time, 
@@ -15,11 +14,10 @@ function createNewDish (id, dish, typeOfPasta, time, difficulty){
 
 //Lägga till en pastarätt i databasen
 function addNewDishToDatabase(pastaDatabase, pasta){
-    pastaDatabase.push(pasta);
-
-    let saveTheDish = confirm(`Do you want to add ${pasta.dish} to the collection?`);
+    // pastaDatabase.push(pasta);
+    let wantToSaveTheDish = confirm(`Do you want to add ${pasta.dish} to the collection?`);
     
-    if(saveTheDish){
+    if(wantToSaveTheDish){
         pastaDatabase.push(pasta);
     }
 }
@@ -28,7 +26,8 @@ function addNewDishToDatabase(pastaDatabase, pasta){
 function removePastaByID(pastas, id) {
     for (let i = 0; i < pastas.length; i++) {
         let pasta = pastas[i];
-        if( pasta.id == id) {
+
+        if(pasta.id == id) {
             pastas.splice(i, 1);
             return;
         }
@@ -38,32 +37,43 @@ function removePastaByID(pastas, id) {
 
 //Returns all pastadishes based on name 
 function pastaDishes(pastas, dish){
-    let pastaDish = [];
+    let pastaByDish = [];
 
     for (let pasta of pastas){
-        if (pasta.dish.toLowerCase()== dish.toLowerCase()){
-            pastaDishes.push(pasta);
+        if (pasta.dish.toLowerCase() == dish.toLowerCase()){
+            pastaByDish.push(pasta);
         }
     }
-    return pastaDish;
+    return pastaByDish;
+}
+
+function pastaByTime (pastas, time){
+    let pastaByTime = [];
+
+    for (let pasta of pastas){
+        if (pasta.time == time){
+            pastaByTime.push(pasta);
+        }
+    }
+    return pastaByTime;
 }
 
 //Returns pasta by difficulty 
 function pastaDifficulty(pastas, difficulty){
-    let pastaDifficulty = [];
+    let pastaByDifficulty = [];
 
-    for (let pasta of pastas){
-        if (pasta.difficulty.toLowerCase()== difficulty.toLowerCase()){
-            pastaDatabase.push(pasta);
-        }
-    }
-    return pastaDifficulty;
+   for(let pasta of pastas){
+       if(pasta.difficulty.toLowerCase() == difficulty.toLowerCase()) {
+           pastaByDifficulty.push(pasta);
+       }
+   }
+    return pastaByDifficulty;
 }
 
 //skapa div 
 function createDiv(pasta) {
   
-    let li = document.createElement("div");
+    let li = document.createElement("li");
     li.classList.add("newDiv");
     li.id = pasta.id;
 
@@ -72,17 +82,19 @@ function createDiv(pasta) {
         <div>${pasta.typeOfPasta}</div>
         <div>${pasta.time}</div>
         <div>${pasta.difficulty}</div>
-        <button type="button">Remove</button>
+        <button>Remove</button>
         `;
 
     return li;
 }
 
 // går igenom alla pastadishes i databasen // lägger till i HTML
-function visiblePasta(){
-    for ( let pasta of pastaDatabase ){
+function visiblePasta(pastas) {
+    let pastaChart = document.getElementById("pastaChart");
+    pastaChart.innerHTML = "";
+
+    for ( let pasta of pastas ){
         let pastaElement = createDiv(pasta);
-        let pastaChart = document.getElementById("pastaChart");
         pastaChart.appendChild(pastaElement);
     }
     //lägger till remove-handlers för rätterna
@@ -90,7 +102,7 @@ function visiblePasta(){
 }
 
 
-//När <form id="pasta" is submitted
+//När "Add your favourite dish to collection" blir klickad
 function onAddDishSubmit(event){
     //Förhindrar att användaren kommer till en ny sida
     event.preventDefault();
@@ -100,18 +112,22 @@ function onAddDishSubmit(event){
     let difficulty = document.getElementById("difficulty").value;
 
     if(name == ""){
-        return alert(`Fill the form to add a new dish`);
+        alert(`Fill the form to add a new dish`);
+        return false;
+        
     }
 
-    else if (time == 0){
+    else if (time == ""){
         alert(`Fill the form to add a new dish`);
+        return false;
     }
 
     else if(difficulty == ""){
         alert(`Fill the form to add a new dish`);
+        return false;
     }
 
-    let pasta = createNewDish ( name, time, difficulty);
+    let pasta = createNewDish (name, time, difficulty);
 
     // räkna ut den nya rättens id
     pasta.id = pastaDatabase[pastaDatabase.length - 1].id + 1;
@@ -126,8 +142,8 @@ function onAddDishSubmit(event){
 
 //Lägg till "click" event handler till <botton id ="add">
 function setAddDishHandler(){
-    let click = document.getElementById("pasta");
-    click.addEventListener("submit", onAddDishSubmit)
+    let form = document.getElementById("pasta");
+    form.addEventListener("submit", onAddDishSubmit)
 }
 
 //Ta bort via remove-knappen
@@ -135,7 +151,7 @@ function onRemovePastaClick(event) {
     let button = event.target;
     let id = button.parentElement.id;
 
-    if ( confirm(`Are you sure you want to remove the dish from the collection?`) == true){
+    if (confirm(`Are you sure you want to remove the dish from the collection?`) == true){
         removePastaByID(pastaDatabase, id);
     }
     else {
@@ -154,8 +170,8 @@ function setRemovePastaHandler(){
     }
 }
 
-//Filter recepies by dish
-function onFilterByDish(event){
+//Filtrera pasta by dish (name)
+function onFilterByDish(event) {
     event.preventDefault();
     // Vilken rätt?
     let dish = document.getElementById("filter-dish").value;
@@ -164,14 +180,16 @@ function onFilterByDish(event){
     // Visa rätterna som filtrerats beroende på rätt
     visiblePasta(pastas);
 
+    // document.getElementById("filter-phase").value = "";  
+
 }
 //Filter recepies by time
 function onFilterByTime (event){
-    event.preventDefault(event)
+    event.preventDefault();
     //Vilken tid?
     let time =document.getElementById("filter-time").value;
     //Välj recept beroende på tid
-    let pastas = pastaTime(pastaDatabase, time);
+    let pastas = pastaByTime(pastaDatabase, time);
     //Visa rätterna som filtrerats beroende på tid
     visiblePasta(pastas);
 
@@ -182,9 +200,11 @@ function onFilterByDifficulty(event){
     //Vilken svårighetsgrad
     let difficulty = document.getElementById("filter-difficulty").value;
     //Välj recept beroende på svårighetgrad
-    let pastas = pastaTime(pastaDatabase, difficulty);
+    let pastas = pastaDifficulty(pastaDatabase, difficulty);
     //Visa rätterna som filtrerats beroende på svårighetsgrad
     visiblePasta(pastas);
+
+
 }
 
 function onShowAllClick() {
@@ -196,19 +216,19 @@ function onShowAllClick() {
 
 function setFilterPastaHandlers() {
     let dishForm = document.getElementById("filter-by-dish");
-    let timeForm= document.getElementById("filter-by-time");
-    let difficultyForm= document.getElementById("filter-by-difficulty");
+    let timeForm = document.getElementById("filter-by-time");
+    let difficultyForm = document.getElementById("filter-by-difficulty");
     let showAll = document.getElementById("show-all");
 
-    dishForm = document.addEventListener("submit", onFilterByDish);
+    dishForm.addEventListener("submit", onFilterByDish);
     timeForm = document.addEventListener("submit", onFilterByTime);
-    difficultyForm = document.addEventListener("submit", onFilterByDifficulty);
-    showAll = document.addEventListener("click", onShowAllClick);
+    difficultyForm.addEventListener("submit", onFilterByDifficulty);
+    showAll.addEventListener("click", onShowAllClick);
 }
 
 
-
-visiblePasta();
+//direkt-kod
+visiblePasta(pastaDatabase);
 setAddDishHandler();
 setFilterPastaHandlers();
 

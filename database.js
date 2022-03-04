@@ -1,5 +1,5 @@
 //Array of different Pasta-dishes
-"use strict"
+"use strict";
 
 let pastaDatabase = [
     {
